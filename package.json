@@ -1,24 +1,21 @@
 {
   "name": "nexus-tutorial",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Flavian DESVERNE",
+  "description": "Final code of the Nexus tutorial",
+  "license": "MIT",
   "scripts": {
     "dev": "nexus dev",
     "build": "nexus build",
     "db:save": "yarn prisma migrate save --experimental",
-    "db:up": "yarn prisma migrate up --experimental"
+    "db:up": "yarn prisma migrate up --experimental",
+    "test": "jest tests/"
   },
   "keywords": [],
-  "author": "Flavian DESVERNE",
-  "license": "ISC",
   "dependencies": {
     "nexus": "^0.24.2",
     "nexus-plugin-prisma": "^0.10.0"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "semi": false
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
@@ -31,5 +28,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "./tests/nexus-test-environment.js"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
   }
 }
