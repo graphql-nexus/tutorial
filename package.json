@@ -1,0 +1,35 @@
+{
+  "name": "nexus-tutorial",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nexus dev",
+    "build": "nexus build",
+    "db:save": "yarn prisma migrate save --experimental",
+    "db:up": "yarn prisma migrate up --experimental"
+  },
+  "keywords": [],
+  "author": "Flavian DESVERNE",
+  "license": "ISC",
+  "dependencies": {
+    "nexus": "^0.24.2",
+    "nexus-plugin-prisma": "^0.10.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.3",
+    "jest": "^25.5.4",
+    "nanoid": "^3.1.9",
+    "pg": "^8.2.1",
+    "prettier": "^2.0.5",
+    "ts-jest": "^25.5.1"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "./tests/nexus-test-environment.js"
+  }
+}
