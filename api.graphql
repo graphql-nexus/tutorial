@@ -2,6 +2,11 @@
 ### Do not make changes to this file directly
 
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 """
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO
@@ -16,7 +21,9 @@ scalar Json
 
 type Mutation {
   createDraft(body: String!, title: String!): Post
+  login(email: String!, password: String!): AuthPayload
   publish(draftId: Int!): Post
+  signup(email: String!, password: String!): AuthPayload
 }
 
 type Post {
@@ -27,6 +34,10 @@ type Post {
 }
 
 type Query {
-  drafts: [Post!]
   posts: [Post!]
+  viewer: User
+}
+
+type User {
+  drafts: [Post!]
 }
