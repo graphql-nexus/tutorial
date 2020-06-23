@@ -14,11 +14,15 @@
   },
   "keywords": [],
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^8.5.1",
     "nexus": "0.24.2",
     "nexus-plugin-prisma": "0.10.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/jest": "25.2.3",
+    "@types/jsonwebtoken": "^8.5.0",
     "jest": "25.5.4",
     "nanoid": "3.1.10",
     "pg": "8.2.1",
