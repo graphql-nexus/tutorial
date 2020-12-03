@@ -3,13 +3,13 @@
   "steps": [
     {
       "tag": "CreateSource",
-      "source": "pg"
+      "source": "db"
     },
     {
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "pg"
+        "source": "db"
       },
       "argument": "provider",
       "value": "\"postgresql\""
@@ -18,10 +18,10 @@
       "tag": "CreateArgument",
       "location": {
         "tag": "Source",
-        "source": "pg"
+        "source": "db"
       },
       "argument": "url",
-      "value": "env(\"DATABASE_URL\")"
+      "value": "\"***\""
     },
     {
       "tag": "CreateModel",

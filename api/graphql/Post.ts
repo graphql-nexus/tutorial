@@ -1,10 +1,13 @@
-import { schema } from 'nexus'
+import {
+  extendType,
+  intArg,
+  nonNull,
+  objectType,
+  stringArg,
+} from '@nexus/schema'
 
-schema.objectType({
+export const Post = objectType({
   name: 'Post',
-  nonNullDefaults: {
-    output: true,
-  },
   definition(t) {
     t.int('id')
     t.string('title')
@@ -13,7 +16,7 @@ schema.objectType({
   },
 })
 
-schema.extendType({
+export const PostQuery = extendType({
   type: 'Query',
   definition(t) {
     t.list.field('drafts', {
@@ -31,14 +34,14 @@ schema.extendType({
   },
 })
 
-schema.extendType({
+export const PostMutation = extendType({
   type: 'Mutation',
   definition(t) {
     t.field('createDraft', {
       type: 'Post',
       args: {
-        title: schema.stringArg({ required: true }),
-        body: schema.stringArg({ required: true }),
+        title: nonNull(stringArg()),
+        body: nonNull(stringArg()),
       },
       resolve(_root, args, ctx) {
         const draft = {
@@ -53,15 +56,17 @@ schema.extendType({
     t.field('publish', {
       type: 'Post',
       args: {
-        draftId: schema.intArg({ required: true }),
+        draftId: nonNull(intArg()),
       },
       resolve(_root, args, ctx) {
         return ctx.db.post.update({
-          where: { id: args.draftId },
+          where: {
+            id: args.draftId,
+          },
           data: {
             published: true,
           },
-        });
+        })
       },
     })
   },

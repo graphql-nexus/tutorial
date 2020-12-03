@@ -1,12 +1,10 @@
-// tests/Post.test.ts
-
 import { createTestContext } from './__helpers'
 
 const ctx = createTestContext()
 
 it('ensures that a draft can be created and published', async () => {
   // Create a new draft
-  const draftResult = await ctx.client.send(`                 # 1
+  const draftResult = await ctx.client.request(`               # 1
     mutation {
       createDraft(title: "Nexus", body: "...") {            # 2
         id
@@ -27,10 +25,10 @@ it('ensures that a draft can be created and published', async () => {
         "title": "Nexus",
       },
     }
-  `)
+  `) // 3
 
   // Publish the previously created draft
-  const publishResult = await ctx.client.send(
+  const publishResult = await ctx.client.request(
     `
     mutation publishDraft($draftId: Int!) {
       publish(draftId: $draftId) {
@@ -56,7 +54,7 @@ it('ensures that a draft can be created and published', async () => {
     }
   `)
 
-  const persistedData = await ctx.app.db.client.post.findMany()
+  const persistedData = await ctx.db.post.findMany()
 
   expect(persistedData).toMatchInlineSnapshot(`
     Array [

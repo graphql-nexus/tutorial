@@ -1,4 +1,5 @@
-import { use } from 'nexus'
-import { prisma } from 'nexus-plugin-prisma'
+import { server } from './server'
 
-use(prisma())
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`)
+})
