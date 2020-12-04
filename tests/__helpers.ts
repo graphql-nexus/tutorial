@@ -6,6 +6,7 @@ import { GraphQLClient } from 'graphql-request'
 import { nanoid } from 'nanoid'
 import { join } from 'path'
 import { Client } from 'pg'
+import { db } from '../api/db'
 import { server } from '../api/server'
 
 type TestContext = {
@@ -42,7 +43,11 @@ function graphqlTestContext() {
   return {
     async before() {
       const port = await getPort({ port: makeRange(4000, 6000) })
+
       serverInstance = await server.listen({ port })
+      serverInstance.server.on('close', async () => {
+        await db.$disconnect()
+      })
 
       return new GraphQLClient(`http://localhost:${port}`)
     },
