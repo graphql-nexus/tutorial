@@ -35,7 +35,7 @@
     "dev": "ts-node-dev --transpile-only --no-notify api/app",
     "build": "tsc",
     "generate": "ts-node --transpile-only api/schema",
-    "test": "npm run generate && jest --forceExit"
+    "test": "npm run generate && jest"
   },
   "jest": {
     "preset": "ts-jest",
