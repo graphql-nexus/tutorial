@@ -11,10 +11,10 @@ export const schema = makeSchema({
   typegenAutoConfig: {
     sources: [
       {
-        source: join(__dirname, './context.ts'), // 1
-        alias: 'ContextModule', // 2
+        source: join(__dirname, './context.ts'),
+        alias: 'ContextModule',
       },
     ],
-    contextType: 'ContextModule.Context', // 3
+    contextType: 'ContextModule.Context',
   },
 })
