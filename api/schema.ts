@@ -1,4 +1,4 @@
-import { makeSchema } from '@nexus/schema'
+import { makeSchema } from 'nexus'
 import { join } from 'path'
 import * as types from './graphql'
 
@@ -6,15 +6,9 @@ export const schema = makeSchema({
   types,
   outputs: {
     typegen: join(__dirname, '../node_modules/@types/nexus-typegen/index.d.ts'),
-    schema: join(__dirname, '../schema.graphql'),
   },
-  typegenAutoConfig: {
-    sources: [
-      {
-        source: join(__dirname, './context.ts'),
-        alias: 'ContextModule',
-      },
-    ],
-    contextType: 'ContextModule.Context',
+  contextType: {
+    module: join(__dirname, './context.ts'),
+    export: 'Context'
   },
 })

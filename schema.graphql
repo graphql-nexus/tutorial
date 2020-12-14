@@ -2,6 +2,15 @@
 ### Do not make changes to this file directly
 
 
+interface Media {
+  url: String
+}
+
+type Movie implements Media {
+  director: String
+  url: String
+}
+
 type Mutation {
   createDraft(body: String!, title: String!): Post
   publish(draftId: Int!): Post
@@ -17,4 +26,9 @@ type Post {
 type Query {
   drafts: [Post]
   posts: [Post]
+}
+
+type Song implements Media {
+  album: String
+  url: String
 }

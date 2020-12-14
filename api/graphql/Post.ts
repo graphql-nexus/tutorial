@@ -1,10 +1,35 @@
 import {
   extendType,
   intArg,
+  interfaceType,
   nonNull,
   objectType,
-  stringArg,
-} from '@nexus/schema'
+  stringArg
+} from 'nexus'
+
+export const Media = interfaceType({
+  name: 'Media',
+  resolveType(source) {
+    return 'director' in source ? 'Movie' : 'Song'
+  },
+  definition(t) {
+    t.string('url')
+  },
+})
+export const Movie = objectType({
+  name: 'Movie',
+  definition(t) {
+    t.implements('Media')
+    t.string('director')
+  },
+})
+export const Song = objectType({
+  name: 'Song',
+  definition(t) {
+    t.implements('Media')
+    t.string('album')
+  },
+})
 
 export const Post = objectType({
   name: 'Post',
