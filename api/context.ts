@@ -5,8 +5,6 @@ export interface Context {
   db: PrismaClient
 }
 
-export function createContext(): Context {
-  return {
-    db,
-  }
+export const context = {
+  db,
 }
