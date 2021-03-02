@@ -1,35 +1,4 @@
-import {
-  extendType,
-  intArg,
-  interfaceType,
-  nonNull,
-  objectType,
-  stringArg
-} from 'nexus'
-
-export const Media = interfaceType({
-  name: 'Media',
-  resolveType(source) {
-    return 'director' in source ? 'Movie' : 'Song'
-  },
-  definition(t) {
-    t.string('url')
-  },
-})
-export const Movie = objectType({
-  name: 'Movie',
-  definition(t) {
-    t.implements('Media')
-    t.string('director')
-  },
-})
-export const Song = objectType({
-  name: 'Song',
-  definition(t) {
-    t.implements('Media')
-    t.string('album')
-  },
-})
+import { objectType, extendType, stringArg, nonNull, intArg } from 'nexus'
 
 export const Post = objectType({
   name: 'Post',
@@ -58,7 +27,6 @@ export const PostQuery = extendType({
     })
   },
 })
-
 export const PostMutation = extendType({
   type: 'Mutation',
   definition(t) {
@@ -77,7 +45,6 @@ export const PostMutation = extendType({
         return ctx.db.post.create({ data: draft })
       },
     })
-
     t.field('publish', {
       type: 'Post',
       args: {
@@ -86,7 +53,7 @@ export const PostMutation = extendType({
       resolve(_root, args, ctx) {
         return ctx.db.post.update({
           where: {
-            id: args.draftId,
+            id: args.draftId
           },
           data: {
             published: true,
