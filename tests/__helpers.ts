@@ -5,7 +5,7 @@ import getPort, { makeRange } from "get-port";
 import { GraphQLClient } from "graphql-request";
 import { nanoid } from "nanoid";
 import { join } from "path";
-import { Client } from "pg";
+import { Database } from "sqlite3";
 import { db } from "../api/db";
 import { server } from "../api/server";
 
@@ -69,9 +69,9 @@ function prismaTestContext() {
   return {
     async before() {
       // Generate a unique schema identifier for this test context
-      schema = `test_${nanoid()}`;
+      // schema = `test_${nanoid()}`;
       // Generate the pg connection string for the test schema
-      databaseUrl = `postgresql://postgres:postgres@localhost:5432/test?schema=${schema}`;
+      // databaseUrl = `file:../prisma/dev.db`;
       // Set the required environment variable to contain the connection string
       // to our database test schema
       process.env.DATABASE_URL = databaseUrl;
@@ -89,13 +89,11 @@ function prismaTestContext() {
     },
     async after() {
       // Drop the schema after the tests have completed
-      const client = new Client({
-        connectionString: databaseUrl,
-      });
+      const client = new Database(':memory:');
 
-      await client.connect();
-      await client.query(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
-      await client.end();
+      // await client.connect();
+      // await client.run(`DROP SCHEMA IF EXISTS "${schema}" CASCADE`);
+      await client.close();
       // Release the Prisma Client connection
       await prismaClient?.$disconnect();
     },
