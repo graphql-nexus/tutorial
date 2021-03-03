@@ -3,7 +3,6 @@ import { ServerInfo } from "apollo-server";
 import { execSync } from "child_process";
 import getPort, { makeRange } from "get-port";
 import { GraphQLClient } from "graphql-request";
-import { nanoid } from "nanoid";
 import { join } from "path";
 import { Database } from "sqlite3";
 import { db } from "../api/db";
@@ -62,26 +61,12 @@ function graphqlTestContext() {
 }
 function prismaTestContext() {
   const prismaBinary = join(__dirname, "..", "node_modules", ".bin", "prisma");
-  let schema = "";
-  let databaseUrl = "";
   let prismaClient: null | PrismaClient = null;
 
   return {
     async before() {
-      // Generate a unique schema identifier for this test context
-      // schema = `test_${nanoid()}`;
-      // Generate the pg connection string for the test schema
-      // databaseUrl = `file:../prisma/dev.db`;
-      // Set the required environment variable to contain the connection string
-      // to our database test schema
-      process.env.DATABASE_URL = databaseUrl;
       // Run the migrations to ensure our schema has the required structure
-      execSync(`${prismaBinary} db push --preview-feature`, {
-        env: {
-          ...process.env,
-          DATABASE_URL: databaseUrl,
-        },
-      });
+      execSync(`${prismaBinary} db push --preview-feature`,);
 
       // Construct a new Prisma Client connected to the generated Postgres schema
       prismaClient = new PrismaClient();
