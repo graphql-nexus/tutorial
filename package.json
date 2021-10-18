@@ -7,14 +7,14 @@
   "license": "MIT",
   "keywords": [],
   "dependencies": {
-    "@prisma/client": "2.12.1",
+    "@prisma/client": "2.30.3",
     "apollo-server": "2.19.0",
     "graphql": "15.4.0",
     "nexus": "1.0.0",
     "nexus-plugin-prisma": "0.27.0"
   },
   "devDependencies": {
-    "@prisma/cli": "2.12.1",
+    "@prisma/cli": "2.20.1",
     "@types/jest": "25.2.3",
     "@types/pg": "7.14.7",
     "get-port": "5.1.1",
