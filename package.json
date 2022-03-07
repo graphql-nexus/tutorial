@@ -17,7 +17,7 @@
     "@prisma/cli": "2.12.1",
     "@types/jest": "25.2.3",
     "@types/pg": "7.14.7",
-    "get-port": "5.1.1",
+    "get-port": "6.1.2",
     "graphql-request": "3.3.0",
     "jest": "25.5.4",
     "nanoid": "3.1.10",
