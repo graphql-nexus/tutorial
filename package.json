@@ -20,7 +20,7 @@
     "get-port": "5.1.1",
     "graphql-request": "3.3.0",
     "jest": "25.5.4",
-    "nanoid": "3.1.10",
+    "nanoid": "3.1.31",
     "pg": "8.5.1",
     "prettier": "2.0.5",
     "ts-jest": "25.5.1",
